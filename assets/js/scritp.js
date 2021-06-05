@@ -3,14 +3,28 @@ let randomCity = document.getElementById("cityRandom")
 let today = moment().format('l');
 let todayTemp = document.querySelector(".temp");
 let todayWind = document.querySelector(".wind");
-let todayHumid = document.querySelector(".humidity")
+let todayHumid = document.querySelector(".humidity");
 let todyUV = document.querySelector(".uv");
+
+let dayOne = document.getElementById("day1");
+let day1 = moment().add(1, 'days').calendar("l");
+let day1Temp = document.querySelector(".temp1");
+let day1Wind = document.querySelector(".wind1");
+let day1Humid = document.querySelector(".humid1");
+
+let dayTwo = document.getElementById("day2");
+let day2 = moment().add(2, 'days').calendar("l");
+let day2Temp = document.querySelector(".temp2");
+let day2Wind = document.querySelector(".wind2");
+let day2Humid = document.querySelector(".humid2");
 
 $(".btn").on("click", function (event) {
     event.preventDefault();
     city = $("#city").val()
     // adding city and date 
     randomCity.textContent = city + " " + today;
+    dayOne.textContent = day1;
+    dayTwo.textContent = day2;
     //make the text content to nothing after button is pressed
     // check to see if there is a space in word
     if (city.indexOf(" ") > 0) {
@@ -96,6 +110,18 @@ function weather(lat, long) {
 
             let uvString = data.current.uvi.toString();
             todyUV.textContent = "UV Index: " + uvString;
+
+            // day1
+            let tempDay1 = data.hourly[0].temp.toString()
+            console.log(day1Temp)
+            day1Temp.innerText = "Temp: " + tempDay1 + " Fahrenheit";
+
+            let windDay1 = data.hourly[0].wind_speed.toString()
+            day1Wind.textContent = "Wind: " +windDay1 + " MPH";
+
+            let humidDay1 = data.hourly[0].humidity.toString();
+            day1Humid.textContent = "Humidity: " +humidDay1 + " %";
+
 
         })
 }
