@@ -36,7 +36,7 @@
                 <!-- under forcast will be nested containers or blocks of weather info -->
 
                 <!-- Search Bar -->
-                <div class="mb-3 col-12 col-md-4">
+                <div id="history" class="mb-3 col-12 col-md-4">
                     <h3 class="text-light">Search City</h3>
                     <input id="city" type="text" class="form-control" placeholder="City" aria-label="City"
                         aria-describedby="basic-addon1">
@@ -46,35 +46,38 @@
                     <!-- Need to make this dynamicaly when you press the search bar for the city. Place the city in the value or textcontent and make it reloadable when clicked.  -->
                     <!-- Also include local storage with is form so the items stay when created -->
                     <br />
-                    <input class="form-control mt-4" type="text" placeholder="Disabled input"
-                        aria-label="Disabled input example" disabled>
+                    
                 </div>
 
                 <!-- City Display -->
                 <div class=" col-12 col-md-8">
                     <div class="p-5" style="border: 10px wheat solid;">
-                        <h3 id="cityRandom" class="text-light">Random City</h3>
+                        <i><img id="mainIcon" ></i>
+                        <h3 id="cityRandom" class="text-light"></h3>
+
                         <div class="temp text-light"></div>
                         <div class="wind text-light"></div>
                         <div class="humidity text-light"></div>
-                        <div class="uv text-light"></div>
+                        <div class=" text-light">UV Index:<span class=" text-dark uv"></span></div>
 
+
+                        <!-- Nested forcast -->
                     </div>
-                    <h4 class="text-light">5 Day-Forcast</h4>
+                    <h4 class="text-light">5 Day-Forcast:</h4>
                     <div class="row">
                         <div style="font-size: 10px" id="day1" class="text-light col-md-2">
-                            <span id="span1">something </span>
+                            <span id="span1"> </span>
                             <ul style="list-style-type:none">
-                                <li class="display1 col-12">1</li>
-                                <li class="temp1 col-12">2</li>
-                                <li class="wind1 col-12">3</li>
-                                <li class="humid1 col-12">4</li>
+                                <li class="display1 col-12"><img id="img1"></li>
+                                <li class="temp1 col-12"></li>
+                                <li class="wind1 col-12"></li>
+                                <li class="humid1 col-12"></li>
                             </ul>
                         </div>
                         <div style="font-size: 10px;" id="day2" class="text-light col-md-2">
-                           <span id="span2">something</span>
+                            <span id="span2"></span>
                             <ul style="list-style-type:none">
-                                <li class="display2"></li>
+                                <li class="display2"><img id="img2"></li>
                                 <li class="temp2"></li>
                                 <li class="wind2"></li>
                                 <li class="humid2"></li>
@@ -82,34 +85,34 @@
                         </div>
 
                         <div style="font-size: 10px;" id="day3" class="text-light col-md-2">
-                            <span id="span2">something</span>
-                             <ul style="list-style-type:none">
-                                 <li class="display2"></li>
-                                 <li class="temp2"></li>
-                                 <li class="wind2"></li>
-                                 <li class="humid2"></li>
-                             </ul>
-                         </div>
+                            <span id="span2"></span>
+                            <ul style="list-style-type:none">
+                                <li class="display3"><img id="img3"></li>
+                                <li class="temp3"></li>
+                                <li class="wind3"></li>
+                                <li class="humid3"></li>
+                            </ul>
+                        </div>
 
-                         <div style="font-size: 10px;" id="day4" class="text-light col-md-2">
-                            <span id="span2">something</span>
-                             <ul style="list-style-type:none">
-                                 <li class="display2"></li>
-                                 <li class="temp2"></li>
-                                 <li class="wind2"></li>
-                                 <li class="humid2"></li>
-                             </ul>
-                         </div>
+                        <div style="font-size: 10px;" id="day4" class="text-light col-md-2">
+                            <span id="span2"></span>
+                            <ul style="list-style-type:none">
+                                <li class="display4"><img id="img4"></li>
+                                <li class="temp4"></li>
+                                <li class="wind4"></li>
+                                <li class="humid4"></li>
+                            </ul>
+                        </div>
 
-                         <div style="font-size: 10px;" id="day5" class="text-light col-md-2">
-                            <span id="span2">something</span>
-                             <ul style="list-style-type:none">
-                                 <li class="display2"></li>
-                                 <li class="temp2"></li>
-                                 <li class="wind2"></li>
-                                 <li class="humid2"></li>
-                             </ul>
-                         </div>
+                        <div style="font-size: 10px;" id="day5" class="text-light col-md-2">
+                            <span id="span2"></span>
+                            <ul style="list-style-type:none">
+                                <li class="display5"><img id="img5"></li>
+                                <li class="temp5"></li>
+                                <li class="wind5"></li>
+                                <li class="humid5"></li>
+                            </ul>
+                        </div>
 
 
                     </div>

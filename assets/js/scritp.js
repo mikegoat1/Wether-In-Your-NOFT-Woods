@@ -48,6 +48,17 @@ $(".btn").on("click", function (event) {
     dayThree.textContent = day3;
     dayFour.textContent = day4;
     dayFive.textContent = day5;
+    //history
+    let inputEl = document.createElement("input");
+    inputEl.setAttribute("class", "form-control mt-4");
+    inputEl.setAttribute("type", "text");
+    inputEl.setAttribute("aria-label", city);
+    inputEl.disabled = true;
+    inputEl.placeholder = city;
+    document.getElementById("history").appendChild(inputEl);
+    
+    // <input class="form-control mt-4" type="text" placeholder=""
+    //                     aria-label="" disabled></input>
 
 
     //make the text content to nothing after button is pressed
@@ -133,58 +144,100 @@ function weather(lat, long) {
             let humidString = data.current.humidity.toString();
             todayHumid.textContent = "Humidity: " +humidString + " %";
 
+            let uvInteger = data.current.uvi
+            console.log(uvInteger)
+            if(uvInteger <= 2){
+                todyUV.setAttribute("style", "background-color: green; border-radius: 5px;")
+            } else if(2<uvInteger<6){
+                todyUV.setAttribute("style", "background-color: yellow; border-radius: 5px")
+            } else if (5<uvInteger<8){
+                todyUV.setAttribute("style", "background-color: orange; border-radius: 5px;")
+            } else {
+                todyUV.setAttribute("style", "background-color: red; border-radius: 5px;")
+            }
             let uvString = data.current.uvi.toString();
-            todyUV.textContent = "UV Index: " + uvString;
+            todyUV.textContent =" " +uvString;
+
+            let mainIcon = document.getElementById("mainIcon");
+            console.log(data.current.weather[0].icon)
+            let mainIconHolder = data.current.weather[0].icon;
+            mainIcon.setAttribute("src","http://openweathermap.org/img/wn/"+ mainIconHolder+"@2x.png")
 
             // day1
-            let tempDay1 = data.hourly[0].temp.toString()
+            //Adding Temp
+            let tempDay1 = data.daily[0].temp.day.toString()
             console.log(day1Temp)
             day1Temp.innerText = "Temp: " + tempDay1 + " Fahrenheit";
-
-            let windDay1 = data.hourly[0].wind_speed.toString()
+            //Wind
+            let windDay1 = data.daily[0].wind_speed.toString()
             day1Wind.textContent = "Wind: " +windDay1 + " MPH";
-
-            let humidDay1 = data.hourly[0].humidity.toString();
+            //Humid 
+            let humidDay1 = data.daily[0].humidity.toString();
             day1Humid.textContent = "Humidity: " +humidDay1 + " %";
+            //Icon
+            let icon1 = document.getElementById("img1");
+            let icon1Holder = data.daily[0].weather[0].icon;
+            icon1.setAttribute("src","http://openweathermap.org/img/wn/"+ icon1Holder+".png" )
+
             // day2
-            let tempDay2 = data.hourly[1].temp.toString()
+            //Temp
+            let tempDay2 = data.daily[1].temp.day.toString()
             console.log(day2Temp)
             day2Temp.innerText = "Temp: " + tempDay2 + " Fahrenheit";
-
-            let windDay2 = data.hourly[1].wind_speed.toString()
+            //Wind
+            let windDay2 = data.daily[1].wind_speed.toString()
             day2Wind.textContent = "Wind: " +windDay2 + " MPH";
-
-            let humidDay2 = data.hourly[1].humidity.toString();
+            //Humid
+            let humidDay2 = data.daily[1].humidity.toString();
             day2Humid.textContent = "Humidity: " +humidDay2 + " %";
+            //Icon
+            let icon2 = document.getElementById("img2");
+            let icon2Holder = data.daily[0].weather[0].icon;
+            icon2.setAttribute("src","http://openweathermap.org/img/wn/"+ icon2Holder+".png" )
+
             // day3
-            let tempDay3 = data.hourly[2].temp.toString()
+            //Temp
+            let tempDay3 = data.daily[2].temp.day.toString()
             console.log(day3Temp)
-            day3Temp.innerText = "Temp: " + tempDay3 + " Fahrenheit";
-
-            let windDay3 = data.hourly[2].wind_speed.toString()
+            day3Temp.textContent = "Temp: " + tempDay3 + " Fahrenheit";
+            //Wind
+            let windDay3 = data.daily[2].wind_speed.toString()
             day3Wind.textContent = "Wind: " +windDay3 + " MPH";
-
-            let humidDay3 = data.hourly[2].humidity.toString();
+            //Humid
+            let humidDay3 = data.daily[2].humidity.toString();
             day3Humid.textContent = "Humidity: " +humidDay3 + " %";
+            //Icon
+            let icon3 = document.getElementById("img3");
+            let icon3Holder = data.daily[0].weather[0].icon;
+            icon3.setAttribute("src","http://openweathermap.org/img/wn/"+ icon3Holder+".png" )
+
             // day 4
-            let tempDay4 = data.hourly[3].temp.toString()
+            let tempDay4 = data.daily[3].temp.day.toString()
             console.log(day4Temp)
             day4Temp.innerText = "Temp: " + tempDay4 + " Fahrenheit";
 
-            let windDay4 = data.hourly[3].wind_speed.toString()
+            let windDay4 = data.daily[3].wind_speed.toString()
             day4Wind.textContent = "Wind: " +windDay4 + " MPH";
 
-            let humidDay4 = data.hourly[3].humidity.toString();
+            let humidDay4 = data.daily[3].humidity.toString();
             day4Humid.textContent = "Humidity: " +humidDay4 + " %";
+            let icon4 = document.getElementById("img4");
+            let icon4Holder = data.daily[0].weather[0].icon;
+            icon4.setAttribute("src","http://openweathermap.org/img/wn/"+ icon4Holder+".png" )
+
             // day 5
-            let tempDay5 = data.hourly[4].temp.toString()
+            let tempDay5 = data.daily[4].temp.day.toString()
             console.log(day5Temp)
             day5Temp.innerText = "Temp: " + tempDay5 + " Fahrenheit";
 
-            let windDay5 = data.hourly[4].wind_speed.toString()
+            let windDay5 = data.daily[4].wind_speed.toString()
             day5Wind.textContent = "Wind: " +windDay5 + " MPH";
 
-            let humidDay5 = data.hourly[4].humidity.toString();
+            let humidDay5 = data.daily[4].humidity.toString();
             day5Humid.textContent = "Humidity: " +humidDay5 + " %";
+            let icon5 = document.getElementById("img5");
+            let icon5Holder = data.daily[0].weather[0].icon;
+            icon5.setAttribute("src","http://openweathermap.org/img/wn/"+ icon5Holder+".png" )
+
         })
 }
