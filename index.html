@@ -17,7 +17,7 @@
         integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        <!-- Moment script -->
+    <!-- Moment script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <!-- Personal CSS file -->
     <link href="./assets/css/style.css" />
@@ -28,29 +28,29 @@
         <div class="container-fluid">
             <h1 class="display-2 text-center text-light mb-5">Weather Dashboard</h1>
             <div class="row">
-                  <!-- Search Bar and Results -->
+                <!-- Search Bar and Results -->
 
-                        <!-- I want this to be a side bar -->
-                        <!-- side bar will share with dispalay -->
-                        <!-- Forcast will be nested title of display (div) -->
-                        <!-- under forcast will be nested containers or blocks of weather info -->
+                <!-- I want this to be a side bar -->
+                <!-- side bar will share with dispalay -->
+                <!-- Forcast will be nested title of display (div) -->
+                <!-- under forcast will be nested containers or blocks of weather info -->
 
-                        <!-- Search Bar -->
+                <!-- Search Bar -->
                 <div class="mb-3 col-12 col-md-4">
                     <h3 class="text-light">Search City</h3>
                     <input id="city" type="text" class="form-control" placeholder="City" aria-label="City"
                         aria-describedby="basic-addon1">
-                            <!-- Search Button  -->
-                        <button type="button" class="btn btn-secondary mt-2 col-12 col-md-4 w-100">Search</button>
+                    <!-- Search Button  -->
+                    <button type="button" class="btn btn-secondary mt-2 col-12 col-md-4 w-100">Search</button>
 
-                         <!-- Need to make this dynamicaly when you press the search bar for the city. Place the city in the value or textcontent and make it reloadable when clicked.  -->
-                        <!-- Also include local storage with is form so the items stay when created -->
-                        <br/>
-                        <input class="form-control mt-4" type="text" placeholder="Disabled input"
+                    <!-- Need to make this dynamicaly when you press the search bar for the city. Place the city in the value or textcontent and make it reloadable when clicked.  -->
+                    <!-- Also include local storage with is form so the items stay when created -->
+                    <br />
+                    <input class="form-control mt-4" type="text" placeholder="Disabled input"
                         aria-label="Disabled input example" disabled>
                 </div>
-                         
-                            <!-- City Display -->
+
+                <!-- City Display -->
                 <div class=" col-12 col-md-8">
                     <div class="p-5" style="border: 10px wheat solid;">
                         <h3 id="cityRandom" class="text-light">Random City</h3>
@@ -62,7 +62,8 @@
                     </div>
                     <h4 class="text-light">5 Day-Forcast</h4>
                     <div class="row">
-                        <div id="day1" class="text-light col-md-2">something
+                        <div style="font-size: 10px" id="day1" class="text-light col-md-2">
+                            <span id="span1">something </span>
                             <ul style="list-style-type:none">
                                 <li class="display1 col-12">1</li>
                                 <li class="temp1 col-12">2</li>
@@ -70,17 +71,47 @@
                                 <li class="humid1 col-12">4</li>
                             </ul>
                         </div>
-                        <div id="day2" class="text-light col-md-2">something
+                        <div style="font-size: 10px;" id="day2" class="text-light col-md-2">
+                           <span id="span2">something</span>
                             <ul style="list-style-type:none">
                                 <li class="display2"></li>
                                 <li class="temp2"></li>
                                 <li class="wind2"></li>
                                 <li class="humid2"></li>
                             </ul>
-                        <div class="text-light col-md-2">something</div>
-                        <div class="text-light col-md-2">something</div>
-                        <div class="text-light col-md-2">somet</div>
-                        
+                        </div>
+
+                        <div style="font-size: 10px;" id="day3" class="text-light col-md-2">
+                            <span id="span2">something</span>
+                             <ul style="list-style-type:none">
+                                 <li class="display2"></li>
+                                 <li class="temp2"></li>
+                                 <li class="wind2"></li>
+                                 <li class="humid2"></li>
+                             </ul>
+                         </div>
+
+                         <div style="font-size: 10px;" id="day4" class="text-light col-md-2">
+                            <span id="span2">something</span>
+                             <ul style="list-style-type:none">
+                                 <li class="display2"></li>
+                                 <li class="temp2"></li>
+                                 <li class="wind2"></li>
+                                 <li class="humid2"></li>
+                             </ul>
+                         </div>
+
+                         <div style="font-size: 10px;" id="day5" class="text-light col-md-2">
+                            <span id="span2">something</span>
+                             <ul style="list-style-type:none">
+                                 <li class="display2"></li>
+                                 <li class="temp2"></li>
+                                 <li class="wind2"></li>
+                                 <li class="humid2"></li>
+                             </ul>
+                         </div>
+
+
                     </div>
                 </div>
 
@@ -127,9 +158,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
         integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        
+
     <!-- Personal JS  -->
-        <script src="./assets/js/scritp.js"></script>
+    <script src="./assets/js/scritp.js"></script>
 </body>
 
 </html>
