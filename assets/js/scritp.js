@@ -8,7 +8,6 @@ let todyUV = document.querySelector(".uv");
 $("ul").attr("style", "font-size: 10px")
 
 let dayOne = document.getElementById("day1").children[0];
-console.log(dayOne);
 let day1 = moment().add(1, 'days').calendar("l");
 let day1Temp = document.querySelector(".temp1");
 let day1Wind = document.querySelector(".wind1");
@@ -49,20 +48,16 @@ $(".btn").on("click", function (event) {
     dayFour.textContent = day4;
     dayFive.textContent = day5;
     //history
-    let inputEl = document.createElement("input");
-    inputEl.setAttribute("class", "form-control mt-4");
-    inputEl.setAttribute("type", "text");
-    inputEl.setAttribute("aria-label", city);
-    inputEl.disabled = true;
-    inputEl.placeholder = city;
+    let inputEl = document.createElement("button");
+    inputEl.setAttribute("class", "btn btn-secondary w-100 mt-2");
+    inputEl.setAttribute("value", city);
+    inputEl.setAttribute("id", "btn")
+    inputEl.innerText = city;
     document.getElementById("history").appendChild(inputEl);
-    
-    // <input class="form-control mt-4" type="text" placeholder=""
-    //                     aria-label="" disabled></input>
+    //clear input
+    let cityClear = document.getElementById("city");
+    cityClear.value = " ";
 
-
-    //make the text content to nothing after button is pressed
-    // check to see if there is a space in word
     if (city.indexOf(" ") > 0) {
         let theCity = city.replace(/\s/g, '%20')
         console.log(theCity)
@@ -73,7 +68,16 @@ $(".btn").on("click", function (event) {
 
 
 })
+//Clicking history city tab
+$("#history").on("click", function (event) {
+    event.stopPropagation();
+    if (event.target.matches("button")){
+        console.log(event.target.value);
+        searchLocation(event.target.value);
+        randomCity.textContent = event.target.value + " " + today;
+    }
 
+})
 
 
 
@@ -96,35 +100,10 @@ function searchLocation(cityName) {
         console.log(searchLocation.data[0].longitude);
         let long = searchLocation.data[0].longitude;
         let lat = searchLocation.data[0].latitude;
-        weather(lat,long)
+        weather(lat, long)
     });
 }
 
-
-
-
-
-
-//API Current Location
-settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://ip-geo-location.p.rapidapi.com/ip/check?format=json",
-    "method": "GET",
-    "headers": {
-        "x-rapidapi-key": "a905819813mshb487c4aa03c8e57p1f0687jsnfe693ad390a5",
-        "x-rapidapi-host": "ip-geo-location.p.rapidapi.com"
-    }
-};
-
-$.ajax(settings).done(function (yourLocation) {
-    console.log(yourLocation.location.latitude);
-    console.log(yourLocation.location.longitude);
-    let lat = yourLocation.location.latitude;
-    let long = yourLocation.location.longitude;
-
-    
-});
 
 //The weather API
 function weather(lat, long) {
@@ -134,34 +113,31 @@ function weather(lat, long) {
         })
         .then(function (data) {
             console.log(data);
-            let tempString =data.current.temp.toString();
-            console.log(tempString) 
+            let tempString = data.current.temp.toString();
             todayTemp.textContent = "Temp: " + tempString + " Fahrenheit";
 
             let windString = data.current.wind_speed.toString();
-            todayWind.textContent = "Wind: " +windString + " MPH";
+            todayWind.textContent = "Wind: " + windString + " MPH";
 
             let humidString = data.current.humidity.toString();
-            todayHumid.textContent = "Humidity: " +humidString + " %";
+            todayHumid.textContent = "Humidity: " + humidString + " %";
 
             let uvInteger = data.current.uvi
-            console.log(uvInteger)
-            if(uvInteger <= 2){
+            if (uvInteger <= 2) {
                 todyUV.setAttribute("style", "background-color: green; border-radius: 5px;")
-            } else if(2<uvInteger<6){
+            } else if (2 < uvInteger < 6) {
                 todyUV.setAttribute("style", "background-color: yellow; border-radius: 5px")
-            } else if (5<uvInteger<8){
+            } else if (5 < uvInteger < 8) {
                 todyUV.setAttribute("style", "background-color: orange; border-radius: 5px;")
             } else {
                 todyUV.setAttribute("style", "background-color: red; border-radius: 5px;")
             }
             let uvString = data.current.uvi.toString();
-            todyUV.textContent =" " +uvString;
+            todyUV.textContent = " " + uvString;
 
             let mainIcon = document.getElementById("mainIcon");
-            console.log(data.current.weather[0].icon)
             let mainIconHolder = data.current.weather[0].icon;
-            mainIcon.setAttribute("src","http://openweathermap.org/img/wn/"+ mainIconHolder+"@2x.png")
+            mainIcon.setAttribute("src", "http://openweathermap.org/img/wn/" + mainIconHolder + "@2x.png")
 
             // day1
             //Adding Temp
@@ -170,14 +146,14 @@ function weather(lat, long) {
             day1Temp.innerText = "Temp: " + tempDay1 + " Fahrenheit";
             //Wind
             let windDay1 = data.daily[0].wind_speed.toString()
-            day1Wind.textContent = "Wind: " +windDay1 + " MPH";
+            day1Wind.textContent = "Wind: " + windDay1 + " MPH";
             //Humid 
             let humidDay1 = data.daily[0].humidity.toString();
-            day1Humid.textContent = "Humidity: " +humidDay1 + " %";
+            day1Humid.textContent = "Humidity: " + humidDay1 + " %";
             //Icon
             let icon1 = document.getElementById("img1");
             let icon1Holder = data.daily[0].weather[0].icon;
-            icon1.setAttribute("src","http://openweathermap.org/img/wn/"+ icon1Holder+".png" )
+            icon1.setAttribute("src", "http://openweathermap.org/img/wn/" + icon1Holder + ".png")
 
             // day2
             //Temp
@@ -186,14 +162,14 @@ function weather(lat, long) {
             day2Temp.innerText = "Temp: " + tempDay2 + " Fahrenheit";
             //Wind
             let windDay2 = data.daily[1].wind_speed.toString()
-            day2Wind.textContent = "Wind: " +windDay2 + " MPH";
+            day2Wind.textContent = "Wind: " + windDay2 + " MPH";
             //Humid
             let humidDay2 = data.daily[1].humidity.toString();
-            day2Humid.textContent = "Humidity: " +humidDay2 + " %";
+            day2Humid.textContent = "Humidity: " + humidDay2 + " %";
             //Icon
             let icon2 = document.getElementById("img2");
             let icon2Holder = data.daily[0].weather[0].icon;
-            icon2.setAttribute("src","http://openweathermap.org/img/wn/"+ icon2Holder+".png" )
+            icon2.setAttribute("src", "http://openweathermap.org/img/wn/" + icon2Holder + ".png")
 
             // day3
             //Temp
@@ -202,14 +178,14 @@ function weather(lat, long) {
             day3Temp.textContent = "Temp: " + tempDay3 + " Fahrenheit";
             //Wind
             let windDay3 = data.daily[2].wind_speed.toString()
-            day3Wind.textContent = "Wind: " +windDay3 + " MPH";
+            day3Wind.textContent = "Wind: " + windDay3 + " MPH";
             //Humid
             let humidDay3 = data.daily[2].humidity.toString();
-            day3Humid.textContent = "Humidity: " +humidDay3 + " %";
+            day3Humid.textContent = "Humidity: " + humidDay3 + " %";
             //Icon
             let icon3 = document.getElementById("img3");
             let icon3Holder = data.daily[0].weather[0].icon;
-            icon3.setAttribute("src","http://openweathermap.org/img/wn/"+ icon3Holder+".png" )
+            icon3.setAttribute("src", "http://openweathermap.org/img/wn/" + icon3Holder + ".png")
 
             // day 4
             let tempDay4 = data.daily[3].temp.day.toString()
@@ -217,13 +193,13 @@ function weather(lat, long) {
             day4Temp.innerText = "Temp: " + tempDay4 + " Fahrenheit";
 
             let windDay4 = data.daily[3].wind_speed.toString()
-            day4Wind.textContent = "Wind: " +windDay4 + " MPH";
+            day4Wind.textContent = "Wind: " + windDay4 + " MPH";
 
             let humidDay4 = data.daily[3].humidity.toString();
-            day4Humid.textContent = "Humidity: " +humidDay4 + " %";
+            day4Humid.textContent = "Humidity: " + humidDay4 + " %";
             let icon4 = document.getElementById("img4");
             let icon4Holder = data.daily[0].weather[0].icon;
-            icon4.setAttribute("src","http://openweathermap.org/img/wn/"+ icon4Holder+".png" )
+            icon4.setAttribute("src", "http://openweathermap.org/img/wn/" + icon4Holder + ".png")
 
             // day 5
             let tempDay5 = data.daily[4].temp.day.toString()
@@ -231,13 +207,13 @@ function weather(lat, long) {
             day5Temp.innerText = "Temp: " + tempDay5 + " Fahrenheit";
 
             let windDay5 = data.daily[4].wind_speed.toString()
-            day5Wind.textContent = "Wind: " +windDay5 + " MPH";
+            day5Wind.textContent = "Wind: " + windDay5 + " MPH";
 
             let humidDay5 = data.daily[4].humidity.toString();
-            day5Humid.textContent = "Humidity: " +humidDay5 + " %";
+            day5Humid.textContent = "Humidity: " + humidDay5 + " %";
             let icon5 = document.getElementById("img5");
             let icon5Holder = data.daily[0].weather[0].icon;
-            icon5.setAttribute("src","http://openweathermap.org/img/wn/"+ icon5Holder+".png" )
+            icon5.setAttribute("src", "http://openweathermap.org/img/wn/" + icon5Holder + ".png")
 
         })
 }
