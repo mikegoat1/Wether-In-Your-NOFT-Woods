@@ -1,4 +1,6 @@
 
+let storedCity =[];
+
 let randomCity = document.getElementById("cityRandom")
 let today = moment().format('l');
 let todayTemp = document.querySelector(".temp");
@@ -37,6 +39,26 @@ let day5Temp = document.querySelector(".temp5");
 let day5Wind = document.querySelector(".wind5");
 let day5Humid = document.querySelector(".humid5");
 
+//setting up local storage items
+function getStored (){
+   let whatYouGot = localStorage.getItem("key"); 
+   whatYouGot = JSON.parse(whatYouGot);
+   storedCity.push(whatYouGot)
+    console.log(whatYouGot);
+    for (const citys of whatYouGot){
+        let inputEl = document.createElement("button");
+    inputEl.setAttribute("class", "btn btn-secondary w-100 mt-2");
+    inputEl.setAttribute("value", citys);
+    inputEl.setAttribute("id", "btn")
+    inputEl.innerText = citys;
+    document.getElementById("history").appendChild(inputEl);
+
+    }
+    
+}
+
+
+
 $(".btn").on("click", function (event) {
     event.preventDefault();
     city = $("#city").val()
@@ -54,6 +76,9 @@ $(".btn").on("click", function (event) {
     inputEl.setAttribute("id", "btn")
     inputEl.innerText = city;
     document.getElementById("history").appendChild(inputEl);
+    //Local Storage "set"
+    storedCity.push(city);
+    localStorage.setItem("key",JSON.stringify(storedCity) );
     //clear input
     let cityClear = document.getElementById("city");
     cityClear.value = " ";
@@ -72,7 +97,6 @@ $(".btn").on("click", function (event) {
 $("#history").on("click", function (event) {
     event.stopPropagation();
     if (event.target.matches("button")){
-        console.log(event.target.value);
         searchLocation(event.target.value);
         randomCity.textContent = event.target.value + " " + today;
     }
@@ -96,8 +120,7 @@ function searchLocation(cityName) {
     };
 
     $.ajax(settings).done(function (searchLocation) {
-        console.log(searchLocation.data[0].latitude);
-        console.log(searchLocation.data[0].longitude);
+        
         let long = searchLocation.data[0].longitude;
         let lat = searchLocation.data[0].latitude;
         weather(lat, long)
@@ -217,3 +240,5 @@ function weather(lat, long) {
 
         })
 }
+
+getStored();
